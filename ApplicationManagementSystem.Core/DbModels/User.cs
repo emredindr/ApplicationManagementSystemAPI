@@ -1,9 +1,9 @@
-﻿using ApplicationManagementSystem.Core.Entities.Audit;
+﻿using ApplicationManagementSystem.Core.Entities;
 using ApplicationManagementSystem.Core.Enums;
 
 namespace ApplicationManagementSystem.Core.DbModels;
 
-public class User : FullAudited<int>
+public class User : Entity<int>
 {
     public string Name { get; set; }
     public string Surname { get; set; }

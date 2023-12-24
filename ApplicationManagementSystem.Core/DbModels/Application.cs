@@ -3,7 +3,7 @@ using ApplicationManagementSystem.Core.Enums;
 
 namespace ApplicationManagementSystem.Core.DbModels;
 
-public class Application : FullAudited<Guid>, ISoftDelete
+public class Application : FullAudited<Guid>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -14,4 +14,5 @@ public class Application : FullAudited<Guid>, ISoftDelete
     public string Address { get; set; }
     public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
     public string Response { get; set; } = string.Empty;
+
 }

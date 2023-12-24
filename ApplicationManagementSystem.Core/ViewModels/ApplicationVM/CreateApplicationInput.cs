@@ -1,7 +1,11 @@
-﻿namespace ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
+﻿using System.Text.Json.Serialization;
+
+namespace ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
 
 public class CreateApplicationInput
 {
+    [JsonIgnore]
+    public Guid Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }

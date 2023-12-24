@@ -20,7 +20,7 @@ public class UserAppService : BaseAppService, IUserAppService
 
     public async Task<UserLoginOutput> Login(UserLoginInput input)
     {
-        var userCheck = await _userRepository.GetAsync(x => x.Username == input.Username) ?? throw new ApiException($"{input.Username} was not found !");
+        var userCheck = await _userRepository.GetAsync(x => x.Username == input.Username) ?? throw new ApiException("User was not found !");
         if (userCheck.Password != input.Password)
             throw new ApiException("Password is wrong !");
 

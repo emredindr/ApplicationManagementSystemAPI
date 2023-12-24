@@ -43,6 +43,25 @@ public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
 
         builder.Property(_application => _application.Status)
             .HasDefaultValue(ApplicationStatus.Pending)
-           .HasColumnOrder(8);
+        .HasColumnOrder(8);
+
+        builder.Property(_application => _application.CreationTime).
+            HasColumnOrder(9);
+
+        builder.Property(_application => _application.LastModifierUserId).
+            HasColumnOrder(10);
+
+        builder.Property(_application => _application.LastModifierUserId).
+            HasColumnOrder(11);
+
+        builder.Property(_application => _application.DeletorUserId).
+            HasColumnOrder(12);
+
+        builder.Property(_application => _application.DeletionTime).
+           HasColumnOrder(13);
+
+        builder.Property(_application => _application.IsDeleted)
+            .HasColumnOrder(14);
+
     }
 }

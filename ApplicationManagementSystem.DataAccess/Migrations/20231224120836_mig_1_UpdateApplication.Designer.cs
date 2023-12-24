@@ -4,6 +4,7 @@ using ApplicationManagementSystem.DataAccess.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationManagementSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231224120836_mig_1_UpdateApplication")]
+    partial class mig_1_UpdateApplication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,16 +41,16 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         .HasColumnOrder(4);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(9);
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(13);
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("DeletorUserId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(12);
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -66,15 +68,13 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         .HasColumnOrder(5);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnOrder(14);
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("LastModifierUserId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(11);
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()

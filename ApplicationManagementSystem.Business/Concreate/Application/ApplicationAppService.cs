@@ -1,6 +1,7 @@
 ﻿using ApplicationManagementSystem.Business.Abstract;
 using ApplicationManagementSystem.Core.DbModels;
 using ApplicationManagementSystem.Core.Dto.Response;
+using ApplicationManagementSystem.Core.Extensions.ResponseAndExceptionMiddleware;
 using ApplicationManagementSystem.Core.Repositories;
 using ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
 using ApplicationManagementSystem.Core.ViewModels.DocumentVM;
@@ -21,12 +22,11 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         _documentRepository = documentRepository;
     }
 
-    public async Task CreateApplication(CreateApplicationInput input)
+    public async Task<Guid> CreateAndGetApplicationId(CreateApplicationInput input)
     {
         var newApplication = Mapper.Map<Application>(input);
 
-        await _applicationRepository.InsertAsync(newApplication);
-
+        return await _applicationRepository.InsertAndGetIdAsync(newApplication);
     }
 
     public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList()
@@ -60,8 +60,27 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         return mappedActivities;
     }
 
-    public Task UpdateApplication(UpdateApplicationInput input)
+    public async Task UpdateApplication(UpdateApplicationInput input)
     {
-        throw new NotImplementedException();
+        var applicationToUpdate = await _applicationRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
+        if (applicationToUpdate == null)
+        {
+            throw new ApiException("Application was not found !");
+        }
+
+        var mappedApplication = Mapper.Map<Application>(input);
+        await _applicationRepository.UpdateAsync(mappedApplication);
+
     }
+    public async Task DeleteApplication(Guid applicationId)
+    {
+        var application = await _applicationRepository.GetAsync(applicationId);
+        if (application == null)
+        {
+            throw new ApiException("Application was not found !");
+        }
+
+        await _applicationRepository.DeleteAsync(applicationId);
+    }
+
 }

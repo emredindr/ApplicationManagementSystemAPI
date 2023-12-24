@@ -59,7 +59,7 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
 
         public async Task<TEntity> InsertAsync(TEntity entity)
         {
-            //SetCreationAudit(entity);
+            SetCreationAudit(entity);
 
             _dbSet.Add(entity);
             await _appDbContext.SaveChangesAsync();
@@ -67,12 +67,16 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
         }
         public TPrimaryKey InsertAndGetId(TEntity entity)
         {
+            SetCreationAudit(entity);
+
             _dbSet.Add(entity);
             _appDbContext.SaveChanges();
             return entity.Id;
         }
         public async Task<TPrimaryKey> InsertAndGetIdAsync(TEntity entity)
         {
+            SetCreationAudit(entity);
+
             _dbSet.Add(entity);
             await _appDbContext.SaveChangesAsync();
             return entity.Id;
@@ -89,7 +93,7 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            //SetModificationAudit(entity);
+            SetModificationAudit(entity);
 
             _dbSet.Update(entity);
             await _appDbContext.SaveChangesAsync();
@@ -110,7 +114,7 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
         {
             var record = await _dbSet.FindAsync(id);
 
-            //SetDeletionAudit(record);
+            SetDeletionAudit(record);
 
             _dbSet.Update(record);
             await _appDbContext.SaveChangesAsync();
@@ -125,11 +129,9 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
         }
         private TEntity SetCreationAudit(TEntity entity)
         {
-            var currentUserId = _userManager.GetCurrentUserId();
 
             entity = SetCustomProperty(entity, "IsDeleted", false);
             entity = SetCustomProperty(entity, "CreationTime", DateTime.Now);
-            entity = SetCustomProperty(entity, "CreatorUserId", currentUserId);
 
             return entity;
         }
@@ -166,7 +168,7 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
 
         public List<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return predicate==null ? _dbSet.ToList(): _dbSet.Where(predicate).ToList();
+            return predicate == null ? _dbSet.ToList() : _dbSet.Where(predicate).ToList();
         }
     }
 }
