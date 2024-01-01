@@ -1,11 +1,15 @@
 ﻿using ApplicationManagementSystem.Business.Abstract;
 using ApplicationManagementSystem.Core.DbModels;
 using ApplicationManagementSystem.Core.Dto.Response;
+using ApplicationManagementSystem.Core.Enums;
+using ApplicationManagementSystem.Core.Extensions.Linq;
 using ApplicationManagementSystem.Core.Extensions.ResponseAndExceptionMiddleware;
 using ApplicationManagementSystem.Core.Repositories;
 using ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
 using ApplicationManagementSystem.Core.ViewModels.DocumentVM;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
+using Application = ApplicationManagementSystem.Core.DbModels.Application;
 
 namespace ApplicationManagementSystem.Business.Concreate;
 
@@ -22,16 +26,10 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         _documentRepository = documentRepository;
     }
 
-    public async Task<Guid> CreateAndGetApplicationId(CreateApplicationInput input)
-    {
-        var newApplication = Mapper.Map<Application>(input);
-
-        return await _applicationRepository.InsertAndGetIdAsync(newApplication);
-    }
-
     public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList()
     {
         var query = from application in _applicationRepository.GetAll()
+                    where !application.IsDeleted && application.Status == ApplicationStatus.Pending
                     select new GetAllApplicationInfo
                     {
                         Id = application.Id,
@@ -44,12 +42,15 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
                         Address = application.Address,
                         Status = application.Status,
                         Response = application.Response,
+                        CreationTime = application.CreationTime,
                         Documents = (from applicationDocument in _applicationDocumentRepository.GetAll()
                                      join document in _documentRepository.GetAll() on applicationDocument.DocumentId equals document.Id
                                      where applicationDocument.ApplicationId == application.Id
                                      select new GetAllDocumentInfo
                                      {
                                          Id = document.Id,
+                                         Name=document.Name,
+                                         ContentType=document.ContentType,
                                          Url = document.Url
                                      }).ToList()
 
@@ -60,18 +61,96 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         return mappedActivities;
     }
 
-    public async Task UpdateApplication(UpdateApplicationInput input)
+    public async Task<GetAllApplicationInfo> GetApplicationById(Guid applicationId)
     {
-        var applicationToUpdate = await _applicationRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
-        if (applicationToUpdate == null)
+        var query = from application in _applicationRepository.GetAll()
+                    where application.Id == applicationId && !application.IsDeleted
+                    select new GetAllApplicationInfo
+                    {
+                        Id = application.Id,
+                        FirstName = application.FirstName,
+                        LastName = application.LastName,
+                        Email = application.Email,
+                        Birthday = application.Birthday,
+                        IdentityNumber = application.IdentityNumber,
+                        Reason = application.Reason,
+                        Address = application.Address,
+                        Status = application.Status,
+                        Response = application.Response,
+                        CreationTime = application.CreationTime,
+                        Documents = (from applicationDocument in _applicationDocumentRepository.GetAll()
+                                     join document in _documentRepository.GetAll() on applicationDocument.DocumentId equals document.Id
+                                     where applicationDocument.ApplicationId == application.Id
+                                     select new GetAllDocumentInfo
+                                     {
+                                         Id = document.Id,
+                                         Name=document.Name,
+                                         ContentType=document.ContentType,
+                                         Url = document.Url
+                                     }).ToList()
+
+                    };
+
+        var applicationInfo = await query.FirstOrDefaultAsync();
+
+        if (applicationInfo == null)
         {
             throw new ApiException("Application was not found !");
         }
+        return applicationInfo;
+    }
+    public async Task<GetApplicationStatusRatio> GetApplicationStatusRatio()
+    {
+        var query = _applicationRepository.GetAll().Where(application => !application.IsDeleted);
 
-        var mappedApplication = Mapper.Map<Application>(input);
-        await _applicationRepository.UpdateAsync(mappedApplication);
+        var pendingCount = query.Where(application => application.Status ==ApplicationStatus.Pending).Count();
+        var acceptedCount = query.Where(application => application.Status ==ApplicationStatus.Accepted).Count();
+        var rejectedCount = query.Where(application => application.Status ==ApplicationStatus.Rejected).Count();
+
+        var result = new GetApplicationStatusRatio
+        {
+            Pending = pendingCount,
+            Accepted = acceptedCount,
+            Rejected = rejectedCount
+
+        };
+        return result;
 
     }
+
+    public async Task<ApplicationCreateOutput> CreateAndGetApplicationId(CreateApplicationInput input)
+    {
+        var newApplication = Mapper.Map<Application>(input);
+
+        var createdApplicationId = await _applicationRepository.InsertAndGetIdAsync(newApplication);
+
+        var newdocuments = Mapper.Map<List<Document>>(input.Documents);
+
+        foreach (var newDocument in newdocuments)
+        {
+            await _applicationDocumentRepository.InsertAsync(new ApplicationDocument
+            {
+
+                ApplicationId = newApplication.Id,
+                DocumentId = newDocument.Id,
+            });
+
+        }
+
+        return new ApplicationCreateOutput { Id = createdApplicationId };
+
+    }
+
+    public async Task UpdateApplicationStatus(UpdateApplicationStatusInput input)
+    {
+        Application applicationToUpdate = await _applicationRepository.FirstOrDefaultAsync(x => x.Id == input.Id) ?? throw new ApiException("Application was not found !");
+
+        applicationToUpdate.Status = input.Status;
+        applicationToUpdate.Response = input.Response;
+
+        await _applicationRepository.UpdateAsync(applicationToUpdate);
+    }
+
     public async Task DeleteApplication(Guid applicationId)
     {
         var application = await _applicationRepository.GetAsync(applicationId);

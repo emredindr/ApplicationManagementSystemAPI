@@ -25,6 +25,7 @@ namespace ApplicationManagementSystem.Business.Mappings.AutoMapper.Profiles
             CreateMap<Application, CreateApplicationInput>().ReverseMap();
             CreateMap<Application, UpdateApplicationInput>().ReverseMap();
             CreateMap<Application, GetAllApplicationInfo>().ReverseMap();
+            CreateMap<Application, UpdateApplicationStatusInput>().ReverseMap();
 
             // Document
             CreateMap<Document, GetAllDocumentInfo>().ReverseMap();

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using ApplicationManagementSystem.Core.ViewModels.DocumentVM;
+using System.Text.Json.Serialization;
 
 namespace ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
 
@@ -13,4 +14,5 @@ public class CreateApplicationInput
     public string IdentityNumber { get; set; }
     public string Reason { get; set; }
     public string Address { get; set; }
+    public List<GetAllDocumentInfo>Documents { get; set; }
 }

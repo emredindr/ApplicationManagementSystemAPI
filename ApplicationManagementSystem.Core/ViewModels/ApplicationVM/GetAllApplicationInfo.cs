@@ -15,6 +15,7 @@ public class GetAllApplicationInfo
     public string Address { get; set; }
     public ApplicationStatus Status { get; set; }
     public string Response { get; set; }
+    public DateTime CreationTime { get; set; }
 
     public List<GetAllDocumentInfo> Documents { get; set; }
 }

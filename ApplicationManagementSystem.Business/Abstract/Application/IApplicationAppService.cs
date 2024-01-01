@@ -6,7 +6,10 @@ namespace ApplicationManagementSystem.Business.Abstract;
 public interface IApplicationAppService
 {
     Task<ListResult<GetAllApplicationInfo>> GetApplicationList();
-    Task<Guid> CreateAndGetApplicationId(CreateApplicationInput input);
-    Task UpdateApplication(UpdateApplicationInput  input);
+
+    Task<GetAllApplicationInfo> GetApplicationById(Guid applicationId);
+    Task<GetApplicationStatusRatio> GetApplicationStatusRatio();
+    Task<ApplicationCreateOutput> CreateAndGetApplicationId(CreateApplicationInput input);
+    Task UpdateApplicationStatus(UpdateApplicationStatusInput input);
     Task DeleteApplication(Guid applicationId);
 }
