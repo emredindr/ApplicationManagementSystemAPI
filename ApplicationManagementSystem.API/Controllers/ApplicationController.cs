@@ -24,17 +24,30 @@ public class ApplicationController : ControllerBase
         return await _applicationAppService.GetApplicationList();
     }
 
-    [HttpPost("CreateApplication")]
+    [HttpGet("GetApplicationById")]
     [AllowAnonymous]
-    public async Task CreateApplication(CreateApplicationInput input)
+    public async Task<GetAllApplicationInfo> GetApplicationById(Guid applicationId)
     {
-        await _applicationAppService.CreateAndGetApplicationId(input);
+        return await _applicationAppService.GetApplicationById(applicationId);
     }
 
-    [HttpPost("UpdateApplication")]
-    public async Task UpdateApplication(UpdateApplicationInput input)
+    [HttpGet("GetApplicationStatusRatio")]
+    public async Task<GetApplicationStatusRatio> GetApplicationStatusRatio()
     {
-        await _applicationAppService.UpdateApplication(input);
+        return await _applicationAppService.GetApplicationStatusRatio();
+    }
+
+    [HttpPost("CreateApplication")]
+    [AllowAnonymous]
+    public async Task<ApplicationCreateOutput> CreateApplication(CreateApplicationInput input)
+    {
+       return await _applicationAppService.CreateAndGetApplicationId(input);
+    }
+
+    [HttpPost("UpdateApplicationStatus")]
+    public async Task UpdateApplicationStatus(UpdateApplicationStatusInput input)
+    {
+        await _applicationAppService.UpdateApplicationStatus(input);
     }
 
 
