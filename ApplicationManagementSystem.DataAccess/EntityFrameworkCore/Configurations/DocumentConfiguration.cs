@@ -13,8 +13,16 @@ public class DocumentConfiguration : IEntityTypeConfiguration<Document>
         builder.Property(_document => _document.Id)
             .HasColumnOrder(0);
 
-        builder.Property(_document => _document.Url)
+        builder.Property(_document => _document.Name)
           .HasColumnOrder(1)
+          .IsRequired();
+
+        builder.Property(_document => _document.ContentType)
+          .HasColumnOrder(2)
+          .IsRequired();
+        
+        builder.Property(_document => _document.Url)
+          .HasColumnOrder(3)
           .IsRequired();
     }
 }

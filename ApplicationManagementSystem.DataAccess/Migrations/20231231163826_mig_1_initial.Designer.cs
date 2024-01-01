@@ -4,6 +4,7 @@ using ApplicationManagementSystem.DataAccess.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationManagementSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231231163826_mig_1_initial")]
+    partial class mig_1_initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,10 +107,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("431d8a2e-3e89-400b-9640-01bc75d05d29"),
+                            Id = new Guid("95ec6f74-ff19-4e6b-8c2d-8ed2f37ada1f"),
                             Address = "784 Furman Street, Vaughn, Montana, 6667",
                             Birthday = new DateTime(1965, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7646),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1652),
                             Email = "tonihampton@valreda.com",
                             FirstName = "Toni",
                             IdentityNumber = "67890123456",
@@ -120,10 +122,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("76c6bfc5-ed74-4c3d-bde3-705e61b50135"),
+                            Id = new Guid("fc0e0f17-7bfc-40f5-9afb-ebe5c32be476"),
                             Address = "457 Roosevelt Place, Tilleda, Florida, 5976",
                             Birthday = new DateTime(1963, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7683),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1668),
                             Email = "erickacalderon@valreda.com",
                             FirstName = "Ericka",
                             IdentityNumber = "12345678902",
@@ -135,10 +137,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8f1df738-9630-4987-ae71-59dcf0d5039e"),
+                            Id = new Guid("65cdca36-e3d9-45af-847e-f15486924ac3"),
                             Address = "767 Martense Street, Foxworth, Arizona, 3104",
                             Birthday = new DateTime(1977, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7689),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1728),
                             Email = "mamieengland@valreda.com",
                             FirstName = "Mamie",
                             IdentityNumber = "12345678903",
@@ -150,10 +152,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f0c93f22-485a-42ee-a5df-a86770457fa6"),
+                            Id = new Guid("4f25fa33-b31f-4be8-8eda-1a754efb74c6"),
                             Address = "834 Halsey Street, Madaket, California, 7037",
                             Birthday = new DateTime(1975, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7694),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1734),
                             Email = "hopkinshuff@valreda.com",
                             FirstName = "Hopkins",
                             IdentityNumber = "12345678904",
@@ -165,10 +167,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("85f5ec72-abde-46b7-a76a-4eb052a15f34"),
+                            Id = new Guid("a4065f80-a496-4d90-8f79-884d2b18bb88"),
                             Address = "280 Clermont Avenue, Jugtown, Ohio, 7483",
                             Birthday = new DateTime(1972, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7699),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1739),
                             Email = "averymcdonald@valreda.com",
                             FirstName = "Avery",
                             IdentityNumber = "12345678905",
@@ -180,10 +182,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("86dcd9ab-b0f0-42dc-bd95-444b8562c399"),
+                            Id = new Guid("55777e3c-df5c-4f3a-8e37-a226297f46af"),
                             Address = "761 Hoyt Street, Gardiner, Iowa, 4576",
                             Birthday = new DateTime(1964, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7704),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1744),
                             Email = "hildabarnett@valreda.com",
                             FirstName = "Hilda",
                             IdentityNumber = "12345678906",
@@ -195,10 +197,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cd9da98a-b94f-4923-a3d0-4455a576377a"),
+                            Id = new Guid("da1907d8-2cf0-4a3d-a2ce-30838be5eb75"),
                             Address = "870 Clark Street, Thatcher, Virginia, 775",
                             Birthday = new DateTime(1982, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7709),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1749),
                             Email = "freemandaugherty@valreda.com",
                             FirstName = "Freeman",
                             IdentityNumber = "12345678907",
@@ -210,10 +212,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6fbba405-9416-4a49-8cfa-37533a6e0d03"),
+                            Id = new Guid("aef9c2b2-7b9e-4a75-9634-717157036eaa"),
                             Address = "894 Osborn Street, Driftwood, Connecticut, 1546",
                             Birthday = new DateTime(2000, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7714),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1776),
                             Email = "haynesford@valreda.com",
                             FirstName = "Haynes",
                             IdentityNumber = "12345678908",
@@ -225,10 +227,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("94f8472b-c963-47f6-9049-4afbcffbea00"),
+                            Id = new Guid("17677fdf-de64-415b-a8c1-b8675f7a1800"),
                             Address = "124 Grattan Street, Monument, South Dakota, 5593",
                             Birthday = new DateTime(1996, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7720),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1781),
                             Email = "tanyaboyle@valreda.com",
                             FirstName = "Tanya",
                             IdentityNumber = "12345678909",
@@ -240,10 +242,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("db5c497a-4369-4aaa-8ab0-52b9dc6b5772"),
+                            Id = new Guid("e27ab587-e897-4dda-b7dc-72876feba7b1"),
                             Address = "818 Ruby Street, Garnet, Alaska, 1235",
                             Birthday = new DateTime(1981, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7731),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1786),
                             Email = "caradurham@valreda.com",
                             FirstName = "Cara",
                             IdentityNumber = "12345678910",
@@ -255,10 +257,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("854e0f55-292b-4220-ab6b-6029b6a6a4d9"),
+                            Id = new Guid("f21f40a9-6cd7-4911-b1a0-ff81b268e6a2"),
                             Address = "737 Provost Street, Odessa, Kentucky, 4490",
                             Birthday = new DateTime(1992, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7737),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1791),
                             Email = "dawsonpratt@valreda.com",
                             FirstName = "Dawson",
                             IdentityNumber = "12345678911",
@@ -270,10 +272,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6c9c1812-294b-4c9e-aefa-ebedad88f7a0"),
+                            Id = new Guid("ed83dfba-0577-4f60-b5cb-63acb8d492a5"),
                             Address = "635 Taaffe Place, Jeff, Idaho, 9876",
                             Birthday = new DateTime(1992, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7742),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1796),
                             Email = "perezcooke@valreda.com",
                             FirstName = "Perez",
                             IdentityNumber = "12345678912",
@@ -285,10 +287,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cbc605c3-37f2-4e64-9a4c-cae3534cce5e"),
+                            Id = new Guid("d1254620-51e8-4401-82a6-a065ca88c0d0"),
                             Address = "202 Midwood Street, Barstow, Mississippi, 6264",
                             Birthday = new DateTime(1967, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7747),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1801),
                             Email = "powerslynn@valreda.com",
                             FirstName = "Powers",
                             IdentityNumber = "12345678913",
@@ -300,10 +302,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("624acbc2-ad81-4733-a02d-62f11a1c1531"),
+                            Id = new Guid("bdda0546-b013-45f0-b6df-6c9e5ee6d77d"),
                             Address = "460 Chauncey Street, Roosevelt, Pennsylvania, 1055",
                             Birthday = new DateTime(1976, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7752),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1806),
                             Email = "jodiewilliams@valreda.com",
                             FirstName = "Jodie",
                             IdentityNumber = "12345678914",
@@ -315,10 +317,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2bf7150c-328f-41dc-aee1-518c3c4c64c6"),
+                            Id = new Guid("fb4772dc-f75a-4454-8ea0-0ad60fa09091"),
                             Address = "475 Landis Court, Coultervillle, Missouri, 2696",
                             Birthday = new DateTime(1999, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7757),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1811),
                             Email = "francespeck@valreda.com",
                             FirstName = "Frances",
                             IdentityNumber = "12345678915",
@@ -330,226 +332,16 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("50fd9f39-b9c9-4a70-8c39-b5e553b7a679"),
+                            Id = new Guid("ebd010bf-8dba-4df4-a749-e239dd7da619"),
                             Address = "305 Schermerhorn Street, Boykin, Minnesota, 307",
                             Birthday = new DateTime(1999, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7762),
+                            CreationTime = new DateTime(2023, 12, 31, 19, 38, 25, 735, DateTimeKind.Local).AddTicks(1822),
                             Email = "puckettoneill@valreda.com",
                             FirstName = "Puckett",
                             IdentityNumber = "12345678916",
                             IsDeleted = false,
                             LastName = "Oneill",
                             Reason = "Tempor commodo nulla voluptate cupidatat amet magna dolor laboris occaecat incididunt. Eu velit proident laborum elit reprehenderit enim mollit occaecat excepteur in ex eu. Incididunt anim elit consequat sunt cupidatat tempor aliquip nostrud occaecat nisi et adipisicing esse nulla.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("4404c389-a015-4534-91ff-65645d917a4d"),
-                            Address = "378 Lott Avenue, Teasdale, Illinois, 1860",
-                            Birthday = new DateTime(1981, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7767),
-                            Email = "mccoyclarke@valreda.com",
-                            FirstName = "Mccoy",
-                            IdentityNumber = "12345678917",
-                            IsDeleted = false,
-                            LastName = "Clarke",
-                            Reason = "Aliqua mollit sint in elit adipisicing dolore pariatur veniam ut laborum consequat. Pariatur est ipsum deserunt in. Minim labore amet est veniam occaecat sit anim. Aliqua culpa enim quis dolor nulla cupidatat. Non elit exercitation et deserunt incididunt veniam. Sit mollit esse laborum Lorem eiusmod irure cillum sint consequat minim qui minim.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("0a245987-77c1-481e-ae31-856de02f63b3"),
-                            Address = "167 Preston Court, Ada, Nebraska, 7066",
-                            Birthday = new DateTime(1981, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7776),
-                            Email = "mccarthymartin@valreda.com",
-                            FirstName = "Mccarthy",
-                            IdentityNumber = "12345678918",
-                            IsDeleted = false,
-                            LastName = "Martin",
-                            Reason = "Proident commodo veniam commodo voluptate ad nisi. Amet qui nisi reprehenderit ex elit nostrud. Eu quis aliqua laborum labore dolore elit. Non consectetur nostrud aliqua sit culpa excepteur. Nostrud culpa cillum sit ad quis aliqua anim ullamco sit nisi et duis ad cupidatat. Dolore elit ipsum consectetur cupidatat magna. Anim officia dolor magna occaecat id.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("2ec934bc-f638-48de-a875-578e6bab4d5f"),
-                            Address = "275 Landis Court, Fontanelle, Marshall Islands, 4084",
-                            Birthday = new DateTime(1974, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7781),
-                            Email = "carrollcarrillo@valreda.com",
-                            FirstName = "Carroll",
-                            IdentityNumber = "12345678919",
-                            IsDeleted = false,
-                            LastName = "Carrillo",
-                            Reason = "Ipsum occaecat esse cupidatat occaecat tempor. Minim quis in laboris dolore reprehenderit in occaecat esse fugiat excepteur veniam. Voluptate fugiat ex ex pariatur non sint nostrud exercitation sunt deserunt. Tempor ipsum minim amet non laborum labore ullamco duis veniam. Fugiat voluptate anim excepteur anim veniam ut voluptate eiusmod occaecat. Anim reprehenderit magna nisi est nisi sunt non minim cupidatat quis do officia et. Magna adipisicing fugiat labore ea mollit sunt deserunt anim aliquip ea ut ad dolor in.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("e1aecd54-1054-4978-9c3b-5e16f4ea3ad0"),
-                            Address = "300 Roosevelt Court, Linganore, Arizona, 9378",
-                            Birthday = new DateTime(1980, 8, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7786),
-                            Email = "milespearson@valreda.com",
-                            FirstName = "Miles",
-                            IdentityNumber = "12345678920",
-                            IsDeleted = false,
-                            LastName = "Pearson",
-                            Reason = "Ex non quis qui nulla elit dolore anim do magna. Cupidatat non exercitation cupidatat labore sit nisi do duis. Aliqua Lorem excepteur nisi nisi aute minim.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("c106feb3-0b1e-4f27-991a-e97e47e70d1b"),
-                            Address = "295 Harman Street, Forbestown, Pennsylvania, 6491",
-                            Birthday = new DateTime(1966, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7791),
-                            Email = "randipace@valreda.com",
-                            FirstName = "Randi",
-                            IdentityNumber = "12345678921",
-                            IsDeleted = false,
-                            LastName = "Pace",
-                            Reason = "Dolor fugiat labore do incididunt mollit deserunt aliquip ad sunt mollit sint. Sunt deserunt quis nisi do adipisicing mollit et enim eiusmod. Deserunt nisi ut cillum reprehenderit consectetur cupidatat in ex duis et.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("6afbad22-b2e2-4f36-976d-6ef4ee2337d9"),
-                            Address = "123 Guernsey Street, Marenisco, Montana, 2971",
-                            Birthday = new DateTime(1999, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7796),
-                            Email = "candaceburton@valreda.com",
-                            FirstName = "Candace",
-                            IdentityNumber = "12345678922",
-                            IsDeleted = false,
-                            LastName = "Burton",
-                            Reason = "Eiusmod labore voluptate tempor duis deserunt laborum minim nisi minim qui reprehenderit. Ut in in mollit do irure elit ullamco est. Incididunt minim ea fugiat aute enim ipsum eu cupidatat non occaecat aliquip. Occaecat mollit adipisicing occaecat qui id esse id exercitation.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("e1f648b3-f84d-49ac-a720-e0ba89cdeda1"),
-                            Address = "779 Poly Place, Welch, Delaware, 5670",
-                            Birthday = new DateTime(1991, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7801),
-                            Email = "karlalittle@valreda.com",
-                            FirstName = "Karla",
-                            IdentityNumber = "12345678923",
-                            IsDeleted = false,
-                            LastName = "Little",
-                            Reason = "Do amet Lorem laborum ad cupidatat do enim officia. In voluptate aute laborum Lorem occaecat fugiat. Aliquip id enim qui fugiat deserunt laboris dolor incididunt adipisicing officia consequat. Est nisi non ad est proident cillum nulla proident magna.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("5c3df945-3d17-4130-b07c-ec539649922f"),
-                            Address = "406 Ferris Street, Kempton, Nevada, 8511",
-                            Birthday = new DateTime(1989, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7806),
-                            Email = "helenaherrera@valreda.com",
-                            FirstName = "Helena",
-                            IdentityNumber = "12345678924",
-                            IsDeleted = false,
-                            LastName = "Herrera",
-                            Reason = "Ullamco cillum id nostrud ipsum esse quis velit velit est. Id est sunt enim nisi irure nulla do incididunt sint Lorem ad. Laboris nostrud sunt irure incididunt aute incididunt ipsum elit sit tempor commodo quis.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("485391cf-7210-4ac3-8d9c-4acdb5242687"),
-                            Address = "616 Louisa Street, Ona, Massachusetts, 2957",
-                            Birthday = new DateTime(1998, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7811),
-                            Email = "josefacarpenter@valreda.com",
-                            FirstName = "Josefa",
-                            IdentityNumber = "12345678925",
-                            IsDeleted = false,
-                            LastName = "Carpenter",
-                            Reason = "Est laboris consectetur deserunt esse elit fugiat irure qui sint. Veniam minim exercitation non nisi proident eiusmod et excepteur. Deserunt cupidatat cillum duis officia quis quis proident. Id sunt non Lorem cillum ipsum id tempor aliquip amet fugiat nulla et sunt Lorem. Velit excepteur reprehenderit eu voluptate ex commodo irure consectetur ad id. Ipsum mollit ipsum in incididunt commodo. Commodo mollit do magna dolor.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("f048c054-5003-4b99-ae9e-7f0a1969d35c"),
-                            Address = "155 Hale Avenue, Alden, Oregon, 4793",
-                            Birthday = new DateTime(1997, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7820),
-                            Email = "nelsonmorgan@valreda.com",
-                            FirstName = "Nelson",
-                            IdentityNumber = "12345678926",
-                            IsDeleted = false,
-                            LastName = "Morgan",
-                            Reason = "Tempor in est aliquip excepteur est. Id dolore est excepteur voluptate proident consectetur elit non ad id nostrud pariatur labore anim. Esse magna ex ut consequat exercitation est.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("f2b0b6ae-3a12-438f-875e-5b7eafd0b0eb"),
-                            Address = "895 Kane Street, Hasty, Virgin Islands, 1394",
-                            Birthday = new DateTime(1960, 8, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7825),
-                            Email = "rileylambert@valreda.com",
-                            FirstName = "Riley",
-                            IdentityNumber = "12345678927",
-                            IsDeleted = false,
-                            LastName = "Lambert",
-                            Reason = "Et veniam incididunt enim veniam ipsum elit id. Labore dolore incididunt voluptate adipisicing ullamco non. Esse minim ut minim cillum enim proident aliquip cupidatat aliquip esse esse elit tempor. Laborum irure magna et anim irure officia reprehenderit occaecat adipisicing amet ea elit. Culpa sunt fugiat voluptate excepteur consectetur dolore aute.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("de4c6936-f6fd-4b83-b385-f974ec26b709"),
-                            Address = "329 Howard Alley, Noblestown, Northern Mariana Islands, 8023",
-                            Birthday = new DateTime(1962, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7830),
-                            Email = "valentinekerr@valreda.com",
-                            FirstName = "Valentine",
-                            IdentityNumber = "12345678928",
-                            IsDeleted = false,
-                            LastName = "Kerr",
-                            Reason = "Deserunt aute labore deserunt commodo. Commodo consectetur dolore laborum dolore anim officia mollit mollit amet. Duis anim voluptate non deserunt esse eu esse ad laboris. Occaecat mollit mollit veniam officia ullamco nisi amet. Tempor laboris veniam officia enim in aliquip qui irure labore aliqua. Nostrud anim do ea mollit enim exercitation laborum commodo consectetur laboris consequat. Anim consequat cillum exercitation laborum qui proident sunt nisi excepteur qui.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("33b1802b-6767-4531-9334-ba50d8015326"),
-                            Address = "423 Bulwer Place, Williston, Oklahoma, 9490",
-                            Birthday = new DateTime(1980, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7836),
-                            Email = "chandlerstein@valreda.com",
-                            FirstName = "Chandler",
-                            IdentityNumber = "12345678929",
-                            IsDeleted = false,
-                            LastName = "Stein",
-                            Reason = "Sint dolore voluptate ea commodo nostrud consequat duis cupidatat reprehenderit. Labore irure est cillum aute anim voluptate consectetur magna consequat elit adipisicing. Laboris occaecat magna id labore exercitation dolore voluptate in sit fugiat voluptate aute ea. Tempor cupidatat voluptate enim aliquip eu aliquip dolore non proident. Consectetur tempor pariatur magna laboris. Magna pariatur ad sit irure nostrud cupidatat culpa.",
-                            Response = "",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("93a92b23-33ed-4947-9011-b5e40db67346"),
-                            Address = "221 Corbin Place, Jennings, Utah, 323",
-                            Birthday = new DateTime(1969, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreationTime = new DateTime(2023, 12, 31, 22, 19, 5, 992, DateTimeKind.Local).AddTicks(7841),
-                            Email = "robbiesantana@valreda.com",
-                            FirstName = "Robbie",
-                            IdentityNumber = "12345678930",
-                            IsDeleted = false,
-                            LastName = "Santana",
-                            Reason = "Eu qui cupidatat in cillum culpa deserunt amet dolor mollit aliquip. Excepteur quis ipsum exercitation non duis elit. Reprehenderit ut laboris excepteur id aliquip ullamco nisi proident consectetur ex laborum exercitation veniam. Velit eiusmod laborum officia reprehenderit nisi deserunt est labore. Id nisi dolor laboris labore ex in anim commodo aliqua. Qui fugiat amet nostrud eu est ipsum ipsum cupidatat magna.",
                             Response = "",
                             Status = 1
                         });
@@ -586,20 +378,10 @@ namespace ApplicationManagementSystem.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(1);
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(3);
+                        .HasColumnOrder(1);
 
                     b.HasKey("Id");
 
