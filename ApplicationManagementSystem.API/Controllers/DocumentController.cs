@@ -16,7 +16,6 @@ public class DocumentController : ControllerBase
     {
         _documentAppService = documentAppService;
     }
-
     [HttpPost("UploadDocuments")]
     public async Task<IActionResult> UploadDocuments()
     {
@@ -57,9 +56,12 @@ public class DocumentController : ControllerBase
 
                 uploadedDocumentList.Add(new UploadedDocumentInfo
                 {
-                    
+
                     Id = recordDocumentId,
+                    Name = newFileName,
+                    ContentType = file.ContentType,
                     Url = url
+
                 });
             }
 

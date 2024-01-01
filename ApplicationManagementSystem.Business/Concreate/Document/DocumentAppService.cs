@@ -14,7 +14,12 @@ public class DocumentAppService : BaseAppService, IDocumentAppService
 
     public async Task<int> CreateAndGetDocumentId(string fileName, string contentType, string url)
     {
-        var documentId = await _documentrepository.InsertAndGetIdAsync(new Document() { Url = url });
+        var documentId = await _documentrepository.InsertAndGetIdAsync(new Document()
+        {
+            Name = fileName,
+            ContentType = contentType,
+            Url = url
+        });
         return documentId;
     }
 }
