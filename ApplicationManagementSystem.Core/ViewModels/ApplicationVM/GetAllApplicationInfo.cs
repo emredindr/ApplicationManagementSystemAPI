@@ -16,6 +16,9 @@ public class GetAllApplicationInfo
     public ApplicationStatus Status { get; set; }
     public string Response { get; set; }
     public DateTime CreationTime { get; set; }
+    public DateTime? LastModificationTime { get; set; }
+    
 
+    public string FullName => $"{FirstName} {LastName}";
     public List<GetAllDocumentInfo> Documents { get; set; }
 }

@@ -8,7 +8,9 @@ namespace ApplicationManagementSystem.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
+// Authorize attribute is commented out because of the swagger.
+// Authorization is removed For Fimple Final Case
 public class ApplicationController : ControllerBase
 {
     private readonly IApplicationAppService _applicationAppService;
@@ -18,13 +20,20 @@ public class ApplicationController : ControllerBase
         _applicationAppService = applicationAppService;
     }
 
+    //[HttpGet("GetApplicationListByPage")]
+    //public async Task<PagedResult<GetAllApplicationInfo>> GetAllApplicationByPage([FromQuery] GetAllApplicationInput input)
+    //{
+    //    return await _applicationAppService.GetAllApplicationByPage(input);
+    //}
+
     [HttpGet("GetApplicationList")]
-    public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList()
+    public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList([FromQuery] GetAllApplicationInput input)
     {
-        return await _applicationAppService.GetApplicationList();
+        return await _applicationAppService.GetApplicationList(input);
     }
 
-    [HttpGet("GetApplicationById")]
+    //[HttpGet("GetApplicationById")]
+    [HttpGet("{applicationId}")]
     [AllowAnonymous]
     public async Task<GetAllApplicationInfo> GetApplicationById(Guid applicationId)
     {
@@ -41,7 +50,7 @@ public class ApplicationController : ControllerBase
     [AllowAnonymous]
     public async Task<ApplicationCreateOutput> CreateApplication(CreateApplicationInput input)
     {
-       return await _applicationAppService.CreateAndGetApplicationId(input);
+        return await _applicationAppService.CreateAndGetApplicationId(input);
     }
 
     [HttpPost("UpdateApplicationStatus")]
@@ -52,9 +61,9 @@ public class ApplicationController : ControllerBase
 
 
     [HttpDelete("DeleteApplication")]
-    public async Task DeleteApplication(Guid applicationId)
+    public async Task DeleteApplication(DeleteApplicationInput input)
     {
-        await _applicationAppService.DeleteApplication(applicationId);
+        await _applicationAppService.DeleteApplication(input);
     }
 
 

@@ -8,8 +8,6 @@ using ApplicationManagementSystem.Core.Repositories;
 using ApplicationManagementSystem.Core.ViewModels.ApplicationVM;
 using ApplicationManagementSystem.Core.ViewModels.DocumentVM;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
-using Application = ApplicationManagementSystem.Core.DbModels.Application;
 
 namespace ApplicationManagementSystem.Business.Concreate;
 
@@ -26,10 +24,10 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         _documentRepository = documentRepository;
     }
 
-    public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList()
+    public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList(GetAllApplicationInput input)
     {
         var query = from application in _applicationRepository.GetAll()
-                    where !application.IsDeleted && application.Status == ApplicationStatus.Pending
+                    where !application.IsDeleted 
                     select new GetAllApplicationInfo
                     {
                         Id = application.Id,
@@ -43,19 +41,26 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
                         Status = application.Status,
                         Response = application.Response,
                         CreationTime = application.CreationTime,
+                        LastModificationTime = application.LastModificationTime,
                         Documents = (from applicationDocument in _applicationDocumentRepository.GetAll()
                                      join document in _documentRepository.GetAll() on applicationDocument.DocumentId equals document.Id
                                      where applicationDocument.ApplicationId == application.Id
                                      select new GetAllDocumentInfo
                                      {
                                          Id = document.Id,
-                                         Name=document.Name,
-                                         ContentType=document.ContentType,
+                                         Name = document.Name,
+                                         ContentType = document.ContentType,
                                          Url = document.Url
                                      }).ToList()
 
                     };
-        var applications = await query.ToListAsync();
+
+        query = query.WhereIf(input.ApplicationId.HasValue, x => x.Id == input.ApplicationId)
+            .WhereIf(input.Status.HasValue && input.Status!=0, y => y.Status == input.Status)
+            .WhereIf(input.StartDate.HasValue, z => z.CreationTime >= input.StartDate)
+            .WhereIf(input.EndDate.HasValue, t => t.CreationTime <= input.EndDate);
+
+        var applications = await query.OrderByDescending(x => x.CreationTime).ToListAsync();
 
         var mappedActivities = Mapper.Map<ListResult<GetAllApplicationInfo>>(applications);
         return mappedActivities;
@@ -84,8 +89,8 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
                                      select new GetAllDocumentInfo
                                      {
                                          Id = document.Id,
-                                         Name=document.Name,
-                                         ContentType=document.ContentType,
+                                         Name = document.Name,
+                                         ContentType = document.ContentType,
                                          Url = document.Url
                                      }).ToList()
 
@@ -99,13 +104,14 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         }
         return applicationInfo;
     }
+
     public async Task<GetApplicationStatusRatio> GetApplicationStatusRatio()
     {
         var query = _applicationRepository.GetAll().Where(application => !application.IsDeleted);
 
-        var pendingCount = query.Where(application => application.Status ==ApplicationStatus.Pending).Count();
-        var acceptedCount = query.Where(application => application.Status ==ApplicationStatus.Accepted).Count();
-        var rejectedCount = query.Where(application => application.Status ==ApplicationStatus.Rejected).Count();
+        var pendingCount = query.Where(application => application.Status == ApplicationStatus.Pending).Count();
+        var acceptedCount = query.Where(application => application.Status == ApplicationStatus.Accepted).Count();
+        var rejectedCount = query.Where(application => application.Status == ApplicationStatus.Rejected).Count();
 
         var result = new GetApplicationStatusRatio
         {
@@ -151,15 +157,14 @@ public class ApplicationAppService : BaseAppService, IApplicationAppService
         await _applicationRepository.UpdateAsync(applicationToUpdate);
     }
 
-    public async Task DeleteApplication(Guid applicationId)
+    public async Task DeleteApplication(DeleteApplicationInput input)
     {
-        var application = await _applicationRepository.GetAsync(applicationId);
+        var application = await _applicationRepository.GetAsync(x=> x.Id == input.ApplicationId && !x.IsDeleted);
         if (application == null)
         {
             throw new ApiException("Application was not found !");
         }
 
-        await _applicationRepository.DeleteAsync(applicationId);
+        await _applicationRepository.DeleteAsync(input.ApplicationId);
     }
-
 }

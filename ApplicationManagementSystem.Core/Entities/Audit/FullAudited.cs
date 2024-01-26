@@ -2,6 +2,7 @@
 
 public abstract class FullAudited<TPrimeryKey> : Entity<TPrimeryKey>, IFullAudited, ISoftDelete
 {
+    public int? CreatorUserId { get; set; }
     public DateTime CreationTime { get; set; }
     public int? LastModifierUserId { get; set; }
     public DateTime? LastModificationTime { get; set; }

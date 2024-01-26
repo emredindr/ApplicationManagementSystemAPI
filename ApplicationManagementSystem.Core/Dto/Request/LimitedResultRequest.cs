@@ -6,6 +6,6 @@ namespace ApplicationManagementSystem.Core.Dto.Request
     public class LimitedResultRequest : ILimitedResultRequest
     {
         [Range(1, int.MaxValue)]
-        public int MaxResultCount { get; set; } = 10;
+        public int MaxResultCount { get; set; } = 30;
     }
 }

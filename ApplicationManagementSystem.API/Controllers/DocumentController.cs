@@ -20,7 +20,7 @@ public class DocumentController : ControllerBase
     public async Task<IActionResult> UploadDocuments()
     {
         Random random = new();
-        var asd = random.Next(101, 1000);
+       
         try
         {
             var files = Request.Form.Files;
@@ -34,6 +34,7 @@ public class DocumentController : ControllerBase
 
             foreach (var file in files)
             {
+                var asd = random.Next(50, 1000);
                 string fileExtension = Path.GetExtension(file.FileName);
 
                 string result = file.FileName.Substring(0, file.FileName.Length - fileExtension.Length);

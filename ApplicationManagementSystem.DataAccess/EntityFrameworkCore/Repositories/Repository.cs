@@ -129,28 +129,29 @@ namespace ApplicationManagementSystem.DataAccess.EntityFrameworkCore.Repositorie
         }
         private TEntity SetCreationAudit(TEntity entity)
         {
+            //var currentUserId = _userManager.GetCurrentUserId();
 
             entity = SetCustomProperty(entity, "IsDeleted", false);
             entity = SetCustomProperty(entity, "CreationTime", DateTime.Now);
-
+            // entity = SetCustomProperty(entity, "CreatorUserId", currentUserId);
             return entity;
         }
         private TEntity SetModificationAudit(TEntity entity)
         {
-            var currentUserId = _userManager.GetCurrentUserId();
+            //var currentUserId = _userManager.GetCurrentUserId();
 
             entity = SetCustomProperty(entity, "LastModificationTime", DateTime.Now);
-            entity = SetCustomProperty(entity, "LastModifierUserId", currentUserId);
+            // entity = SetCustomProperty(entity, "LastModifierUserId", currentUserId);
 
             return entity;
         }
         private TEntity SetDeletionAudit(TEntity entity)
         {
-            var currentUserId = _userManager.GetCurrentUserId();
+            //var currentUserId = _userManager.GetCurrentUserId();
 
             entity = SetCustomProperty(entity, "IsDeleted", true);
             entity = SetCustomProperty(entity, "DeletionTime", DateTime.Now);
-            entity = SetCustomProperty(entity, "DeletorUserId", currentUserId);
+            //entity = SetCustomProperty(entity, "DeletorUserId", currentUserId);
 
             return entity;
         }
