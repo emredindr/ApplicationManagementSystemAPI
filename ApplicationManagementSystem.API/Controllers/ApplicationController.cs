@@ -20,12 +20,6 @@ public class ApplicationController : ControllerBase
         _applicationAppService = applicationAppService;
     }
 
-    //[HttpGet("GetApplicationListByPage")]
-    //public async Task<PagedResult<GetAllApplicationInfo>> GetAllApplicationByPage([FromQuery] GetAllApplicationInput input)
-    //{
-    //    return await _applicationAppService.GetAllApplicationByPage(input);
-    //}
-
     [HttpGet("GetApplicationList")]
     public async Task<ListResult<GetAllApplicationInfo>> GetApplicationList([FromQuery] GetAllApplicationInput input)
     {

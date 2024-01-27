@@ -5,7 +5,6 @@ namespace ApplicationManagementSystem.Business.Abstract;
 
 public interface IApplicationAppService
 {
-    //Task<PagedResult<GetAllApplicationInfo>> GetAllApplicationByPage(GetAllApplicationInput input);
     Task<ListResult<GetAllApplicationInfo>> GetApplicationList(GetAllApplicationInput input);
     Task<GetAllApplicationInfo> GetApplicationById(Guid applicationId);
     Task<GetApplicationStatusRatio> GetApplicationStatusRatio();
